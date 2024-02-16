@@ -7,6 +7,9 @@ import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import Camera, { FACING_MODES } from "react-html5-camera-photo";
 import "react-html5-camera-photo/build/css/index.css";
 import jsPDF from "jspdf";
+import Typography from '@mui/material/Typography';
+import "./HomePage.css";
+import Grid from '@mui/material/Grid';
 
 function HomePage() {
   
@@ -94,30 +97,30 @@ function HomePage() {
   }
 
   return (
-    <div
-      style={{
-        alignSelf: "center"
-      }}
-    >
+    <div style={{
+      alignContent: "center",
+      alignItems: "center"
+    }}>
       <Button
         variant="contained"
         color="primary"
         startIcon={<CameraAltIcon />}
         onClick={handleScanDocument}
         style={{
-          
           position: "absolute",
           left: "100px",
           top: "200px",
           width: "200px",
           height: "100px",
           borderRadius: "20px",
-          fontSize: "20px",
-          fontWeight: "bold",
+          fontSize: "20px"
         }}
       >
-        Scanner les documents
+        <Typography variant="h6" component="div">
+          Scanner un document
+        </Typography>
       </Button>
+
       <Button
         variant="contained"
         color="primary"
@@ -131,11 +134,13 @@ function HomePage() {
           height: "100px",
           borderRadius: "20px",
           fontSize: "20px",
-          fontWeight: "bold",
         }}
       >
-        Carte d’identité
+        <Typography variant="h6" component="div">
+          Carte d’identité
+        </Typography>
       </Button>
+
       <Button
         variant="contained"
         color="primary"
@@ -149,13 +154,15 @@ function HomePage() {
           height: "100px",
           borderRadius: "20px",
           fontSize: "20px",
-          fontWeight: "bold",
         }}
       >
-        Import des fichiers
+        <Typography variant="h6" component="div">
+          Import de fichier
+        </Typography>
       </Button>
+
       {selectedFile && (
-        <Button
+      <Button
           variant="contained"
           color="secondary"
           onClick={handleConvertToPdf}
@@ -167,14 +174,15 @@ function HomePage() {
             height: "100px",
             borderRadius: "20px",
             fontSize: "20px",
-            fontWeight: "bold",
           }}
-        >
-          Convertir en PDF
-        </Button>
+      >
+          <Typography variant="h6" component="div">
+            Convertir en PDF
+          </Typography>
+      </Button>
       )}
 
-<Button
+      <Button
         variant="contained"
         color="primary"
         startIcon={<ImageIcon />}
@@ -186,14 +194,16 @@ function HomePage() {
           width: "200px",
           height: "100px",
           borderRadius: "20px",
-          fontSize: "20px",
-          fontWeight: "bold",
+          fontSize: "20px"
         }}
       >
-        Import de Photos
+        <Typography variant="h6" component="div">
+          Import de Photos
+        </Typography>
       </Button>
+
       {selectedImage && (
-        <Button
+      <Button
           variant="contained"
           color="secondary"
           onClick={handleConvertToPdf}
@@ -204,12 +214,13 @@ function HomePage() {
             width: "200px",
             height: "100px",
             borderRadius: "20px",
-            fontSize: "20px",
-            fontWeight: "bold",
+            fontSize: "20px"
           }}
-        >
-          Convertir en PDF
-        </Button>
+      >
+          <Typography variant="h6" component="div">
+            Convertir en PDF
+          </Typography>
+      </Button>
       )}
 
       {showCamera && (
