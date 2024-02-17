@@ -196,7 +196,7 @@ function HomePage() {
         }}
       >
         <Typography variant="h6" component="div">
-          Import de Photos
+          Import de Photo
         </Typography>
       </Button>
 
