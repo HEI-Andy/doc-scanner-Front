@@ -42,8 +42,7 @@ function HomePage() {
     input.click();
   }
 
-  //Conversion
-  function handleConvertToPdf() {
+  function handleConvertToPdf1() {
     if (!selectedFile || !selectedFile.name.endsWith('.txt')) {
       alert('Please select a .txt file before converting to PDF.');
       return;
@@ -71,7 +70,7 @@ function HomePage() {
     input.click();
   }
 
-  function handleConvertToPdf() {
+  function handleConvertToPdf2() {
     if (!selectedImage) {
       alert('Please select an image before converting to PDF.');
       return;
@@ -98,8 +97,7 @@ function HomePage() {
 
   return (
     <div style={{
-      alignContent: "center",
-      alignItems: "center"
+      alignContent: "center"
     }}>
       <Button
         variant="contained"
@@ -165,10 +163,10 @@ function HomePage() {
       <Button
           variant="contained"
           color="secondary"
-          onClick={handleConvertToPdf}
+          onClick={handleConvertToPdf1}
           style={{
             position: "absolute",
-            left: "400px",
+            left: "100px",
             top: "400px",
             width: "200px",
             height: "100px",
@@ -206,10 +204,10 @@ function HomePage() {
       <Button
           variant="contained"
           color="secondary"
-          onClick={handleConvertToPdf}
+          onClick={handleConvertToPdf2}
           style={{
             position: "absolute",
-            left: "700px",
+            left: "400px",
             top: "400px",
             width: "200px",
             height: "100px",
