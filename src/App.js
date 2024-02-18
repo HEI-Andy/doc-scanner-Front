@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './components/HomePage'; // Importez votre composant HomePage
+import HomePage from './components/HomePage'; 
 import ConnexionPage from './components/ConnexionPage'; // Importez votre composant ConnexionPage
 
 function App() {

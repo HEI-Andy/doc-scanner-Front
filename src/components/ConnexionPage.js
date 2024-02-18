@@ -23,6 +23,7 @@ function ConnexionPage() {
     }
     try {
       const response = await axios.post('http://localhost:8080/sign-up', {
+        username,
         email,
         password
       });
@@ -33,7 +34,6 @@ function ConnexionPage() {
         setEmail('');
         setPassword('');
         setErrorMessage('');
-        navigate('/HomePage');
       } else {
         setSignUpSuccess(false);
         console.error('Sign up failed:', response.statusText);
