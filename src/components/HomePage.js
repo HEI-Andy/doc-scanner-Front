@@ -8,6 +8,7 @@ import Camera, { FACING_MODES } from "react-html5-camera-photo";
 import "react-html5-camera-photo/build/css/index.css";
 import jsPDF from "jspdf";
 import Typography from '@mui/material/Typography';
+import axios from 'axios';
 
 function HomePage() {
   
@@ -93,6 +94,22 @@ function HomePage() {
     const pdf = new jsPDF();
     pdf.addImage(dataUri, "JPEG", 10, 10);
     pdf.save(`${scanMode}.pdf`);
+
+    const scanData = {
+      scanType: scanMode,
+      image: dataUri 
+    };
+    axios.post('http://8080/scans', scanData)
+    .then(response => {
+      alert('Scan enregistré avec succès!');
+    })
+    .catch(error => {
+      console.error('Erreur lors de l\'enregistrement du scan :', error);
+      alert('Une erreur est survenue lors de l\'enregistrement du scan. Veuillez réessayer.');
+    })
+    .finally(() => {
+      setShowCamera(false);
+    });
   }
 
   return (
