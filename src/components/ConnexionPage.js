@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './ConnexionPage.css'; 
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGooglePlusG, faFacebookF, faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import axios from 'axios';
@@ -13,7 +13,7 @@ function ConnexionPage() {
   const [signUpSuccess, setSignUpSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  
+  const navigate = useNavigate();
   const handleSignUp = async (e) => {
     e.preventDefault();
 
@@ -21,7 +21,6 @@ function ConnexionPage() {
       setErrorMessage('Please fill in all fields.');
       return;
     }
-
     try {
       const response = await axios.post('http://localhost:8080/sign-up', {
         email,
@@ -34,7 +33,7 @@ function ConnexionPage() {
         setEmail('');
         setPassword('');
         setErrorMessage('');
-        window.location.href = '/HomePage';
+        navigate('/HomePage');
       } else {
         setSignUpSuccess(false);
         console.error('Sign up failed:', response.statusText);
@@ -60,7 +59,7 @@ function ConnexionPage() {
   
       if (response.status === 200) {
         setSuccessMessage('Sign-in successful');
-        window.location.href = '/HomePage';
+       navigate('/HomePage');
       }
     } catch (error) {
       console.error('Error signing in:', error);

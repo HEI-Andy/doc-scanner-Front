@@ -8,19 +8,17 @@ import Camera, { FACING_MODES } from "react-html5-camera-photo";
 import "react-html5-camera-photo/build/css/index.css";
 import jsPDF from "jspdf";
 import Typography from '@mui/material/Typography';
-import "./HomePage.css";
-import Grid from '@mui/material/Grid';
 
 function HomePage() {
   
-  const [dataUri, setDataUri] = React.useState("");
-  const [showCamera, setShowCamera] = React.useState(false);
-  const [scanMode, setScanMode] = React.useState("");
+  const [dataUri, setDataUri] = useState("");
+  const [showCamera, setShowCamera] = useState(false);
+  const [scanMode, setScanMode] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
   function handleScanDocument() {
-    
     setShowCamera(true);
     setScanMode("document");
   }
@@ -44,7 +42,7 @@ function HomePage() {
 
   function handleConvertToPdf1() {
     if (!selectedFile || !selectedFile.name.endsWith('.txt')) {
-      alert('Please select a .txt file before converting to PDF.');
+      setErrorMessage('Please select a .txt file before converting to PDF.');
       return;
     }
 
@@ -54,6 +52,7 @@ function HomePage() {
       const pdf = new jsPDF();
       pdf.text(textData,  10,  10);
       pdf.save(`${selectedFile.name}.pdf`);
+      setErrorMessage('');
     };
     reader.readAsText(selectedFile);
   }
@@ -72,7 +71,7 @@ function HomePage() {
 
   function handleConvertToPdf2() {
     if (!selectedImage) {
-      alert('Please select an image before converting to PDF.');
+      setErrorMessage('Please select an image before converting to PDF.');
       return;
     }
 
@@ -82,6 +81,7 @@ function HomePage() {
       const pdf = new jsPDF();
       pdf.addImage(imageData, 'JPEG',  10,  10);
       pdf.save(`${selectedImage.name}.pdf`);
+      setErrorMessage('');
     };
     reader.readAsDataURL(selectedImage);
   }
@@ -159,26 +159,24 @@ function HomePage() {
         </Typography>
       </Button>
 
-      {selectedFile && (
       <Button
-          variant="contained"
-          color="secondary"
-          onClick={handleConvertToPdf1}
-          style={{
-            position: "absolute",
-            left: "100px",
-            top: "400px",
-            width: "200px",
-            height: "100px",
-            borderRadius: "20px",
-            fontSize: "20px",
-          }}
+        variant="contained"
+        color="secondary"
+        onClick={handleConvertToPdf1}
+        style={{
+          position: "absolute",
+          left: "100px",
+          top: "520px",
+          width: "200px",
+          height: "100px",
+          borderRadius: "20px",
+          fontSize: "20px",
+        }}
       >
-          <Typography variant="h6" component="div">
-            Convertir en PDF
-          </Typography>
+        <Typography variant="h6" component="div">
+          Convertir en PDF
+        </Typography>
       </Button>
-      )}
 
       <Button
         variant="contained"
@@ -200,25 +198,29 @@ function HomePage() {
         </Typography>
       </Button>
 
-      {selectedImage && (
       <Button
-          variant="contained"
-          color="secondary"
-          onClick={handleConvertToPdf2}
-          style={{
-            position: "absolute",
-            left: "400px",
-            top: "400px",
-            width: "200px",
-            height: "100px",
-            borderRadius: "20px",
-            fontSize: "20px"
-          }}
+        variant="contained"
+        color="secondary"
+        onClick={handleConvertToPdf2}
+        style={{
+          position: "absolute",
+          left: "400px",
+          top: "520px",
+          width: "200px",
+          height: "100px",
+          borderRadius: "20px",
+          fontSize: "20px"
+        }}
       >
-          <Typography variant="h6" component="div">
-            Convertir en PDF
-          </Typography>
+        <Typography variant="h6" component="div">
+          Convertir en PDF
+        </Typography>
       </Button>
+
+      {errorMessage && (
+        <p style={{ color: 'red', position: 'absolute', bottom: '10px', left: '50%', transform: 'translateX(-50%)' }}>
+          {errorMessage}
+        </p>
       )}
 
       {showCamera && (

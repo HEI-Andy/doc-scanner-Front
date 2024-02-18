@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
-import ConnexionPage from './components/ConnexionPage';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './components/HomePage'; // Importez votre composant HomePage
+import ConnexionPage from './components/ConnexionPage'; // Importez votre composant ConnexionPage
 
 function App() {
   return (
-    <div>
-      <ConnexionPage/>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/homepage" element={<HomePage />} />
+        <Route path="/" element={<ConnexionPage />} />
+      </Routes>
+    </Router>
   );
 }
 
